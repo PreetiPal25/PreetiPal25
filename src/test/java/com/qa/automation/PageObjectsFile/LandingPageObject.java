@@ -1,5 +1,7 @@
 package com.qa.automation.PageObjectsFile;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -16,7 +18,7 @@ import io.cucumber.java.Scenario;
 
 public class LandingPageObject {
 	
-	private static final Logger logger = LogManager.getLogger(LandingPageObject.class);
+	
 	 private WebDriver driver;
 	 private WebDriverWait wait;
 	 Scenario scn;
@@ -125,8 +127,16 @@ public class LandingPageObject {
 			Assert.assertEquals(subscriptionsuccessMsg, successMsgEle.getText());
 	 }
 	 
-	 
-	 
+	 public void verifyHeaderSectionEle(List<String> headerElement)
+	 {
+		 
+		 List<WebElement> headerSectionEle = driver.findElements(By.xpath("//ul[@class='nav navbar-nav']//li"));
+		 for(int i = 0;i<headerSectionEle.size();i++)
+		 {
+			 Assert.assertEquals(headerElement.get(i), headerSectionEle.get(i).getText().trim());
+		 }
+	 }
+	
 	 
 
 }

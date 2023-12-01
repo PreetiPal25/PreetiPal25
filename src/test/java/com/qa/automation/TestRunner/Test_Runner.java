@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features="classpath:features",
         glue="com.qa.automation.StepDefs", 
-        tags="@subscriptionInHomePage", 
+        tags="", 
         plugin = {"pretty", 
             "html:target/html/web_ui_automation_report.html",
             "json:target/json/file.json",

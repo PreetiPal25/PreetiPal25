@@ -1,7 +1,10 @@
 package com.qa.automation.StepDefs;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -113,8 +116,8 @@ public class Step_Def {
 	   logger.info("user click on signup/login button");
 	}
 
-	@When("User over the signup\\/login page with title as {string}")
-	public void user_over_the_signup_login_page_with_title_as(String signUpPageTitle) 
+	@When("User redirect to the signup\\/login page with title as {string}")
+	public void user_redirect_to_the_signup_login_page_with_title_as(String signUpPageTitle) 
 	{
 	    signUpOrLoginPageObject.verifySignUpPageTitle(signUpPageTitle);
 	    scn.log("user verify signup page title" +" - "+ signUpPageTitle);
@@ -219,5 +222,59 @@ public class Step_Def {
 	   logger.info("user verify the subscription success msg");
 	}
 	
+	@When("user able to see {string} section on login page")
+	public void user_able_to_see_section_on_login_page(String loginToAcc) 
+	{
+	    signUpOrLoginPageObject.verifyloginToYourAccText(loginToAcc);
+	    scn.log("user able to see " + loginToAcc + "on login page");
+	    logger.info("user able to see " + loginToAcc + "on login page");
+	}
 
+	@When("User enter {string} and {string}")
+	public void user_enter_and(String EmailId, String Password) 
+	{
+		signUpOrLoginPageObject.enterInvalidLoginEmailIdAndPassword(EmailId, Password);
+		scn.log("user enter email and password - "+EmailId+" , "+Password);
+		logger.info("user enter email and password - "+EmailId+" , "+Password);
+	}
+	
+	@When("User click on login button")
+	public void user_click_on_login_button() 
+	{
+	    signUpOrLoginPageObject.clickOnLoginBtn();
+	    logger.info("user click on login button");
+	}
+	
+	@Then("User verify the error message {string}")
+	public void user_verify_the_error_message(String errorMsg) 
+	{
+	    signUpOrLoginPageObject.verifyLoginInvalidMsg(errorMsg);
+	    scn.log("user verify error msg - "+errorMsg);
+	    logger.info("user verify error msg - "+errorMsg);
+	}
+
+	@When("User enter valid {string} and {string} for login")
+	public void user_enter_valid_and_for_login(String ValidEmailId, String ValidPassword)
+	{
+	   signUpOrLoginPageObject.enterValidEmailIdAndPassword(ValidEmailId, ValidPassword);
+	   scn.log("user enter valid email and password- "+ValidEmailId+" , "+ValidPassword);
+	   logger.info("user enter valid email and password- "+ValidEmailId+" , "+ValidPassword);
+	}
+
+	@Then("User verify with {string} just after Logged in as button")
+	public void user_verify_with_just_after_logged_in_as_button(String username) 
+	{
+	   signUpOrLoginPageObject.userNameAfterLoggedIn(username);
+	   scn.log("user verify username after logged in - "+username);
+	   logger.info("user verify username after logged in - "+username);
+	}
+	
+	@Then("User click on logout button")
+	public void user_click_on_logout_button() 
+	{
+	   signUpOrLoginPageObject.clickOnLogoutBtn();
+	   logger.info("user click on logout button");
+	}
+	
+	
 }
